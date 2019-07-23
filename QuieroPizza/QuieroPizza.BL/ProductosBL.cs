@@ -7,29 +7,20 @@ using System.Threading.Tasks;
 namespace QuieroPizza.BL
 {
     public class ProductosBL
-    {   
-      public List<Producto> ObtenerProductos()
+    {
+        Contexto _contexto;
+
+        public List<Producto> ListadeProductos { get; set; }
+
+
+        public ProductosBL()//Constructor de la clase
         {
-            var producto1 = new Producto();
-            producto1.Id = 1;
-            producto1.Descripcion = "Pizza 8 quesos ";
-            producto1.Precio = 200;
-
-            var producto2 = new Producto();
-            producto2.Id = 2;
-            producto2.Descripcion = "Pizza Jamon y Carne ";
-            producto2.Precio = 100;
-
-            var producto3 = new Producto();
-            producto3.Id = 3;
-            producto3.Descripcion = "Pizza Hawaiana ";
-            producto1.Precio = 250;
-
-            var ListadeProductos = new List<Producto>();
-            ListadeProductos.Add(producto1);
-            ListadeProductos.Add(producto2);
-            ListadeProductos.Add(producto3);
-            return ListadeProductos;
+            _contexto = new Contexto();
+            ListadeProductos = new List<Producto>();    
+        }
+      public List<Producto> ObtenerProductos()
+        {            
+            return _contexto.Productos.ToList();
         }
     }
 }
